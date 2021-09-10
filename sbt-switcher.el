@@ -82,7 +82,9 @@
 (defun sbt-switcher:select-from (all-buffers)
   (let ((buffers (mapcar 'buffer-name all-buffers)))
     (switch-to-buffer-other-window
-     (cond ((fboundp 'ivy-read)
+     (cond ((fboundp 'selectrum--read)
+            (completing-read "SBT buffer: " buffers))
+	   ((fboundp 'ivy-read)
             (ivy-read "SBT buffer: " buffers))
            ((fboundp 'ido-completing-read)
             (ido-completing-read "SBT buffer: " buffers))
