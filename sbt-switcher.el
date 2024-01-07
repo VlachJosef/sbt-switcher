@@ -1,4 +1,4 @@
-;;; sbt-switcher.el --- Easy switching between running sbr processes
+;;; sbt-switcher.el --- Easy switching between running sbt processes
 
 ;; Copyright (c) 2021 Josef Vlach
 
@@ -82,14 +82,7 @@
 (defun sbt-switcher:select-from (all-buffers)
   (let ((buffers (mapcar 'buffer-name all-buffers)))
     (switch-to-buffer-other-window
-     (cond ((fboundp 'selectrum--read)
-            (completing-read "SBT buffer: " buffers))
-	   ((fboundp 'ivy-read)
-            (ivy-read "SBT buffer: " buffers))
-           ((fboundp 'ido-completing-read)
-            (ido-completing-read "SBT buffer: " buffers))
-           (t
-            (completing-read "SBT buffer: (hit TAB to auto-complete): " buffers nil t))))))
+     (completing-read "SBT buffer: " buffers nil t))))
 
 (provide 'sbt-switcher)
 ;;; sbt-switcher.el ends here
